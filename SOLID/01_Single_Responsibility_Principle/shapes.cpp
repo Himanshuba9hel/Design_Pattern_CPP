@@ -49,7 +49,7 @@ void Dimension::showLocation()
 
 Circle::Circle(unsigned int radius) : Dimension(1 , radius) // Passes {0} to Dimension
 {
-    // If you delete ": Dimension({0})", you get a Compiler Error!
+
 }
 
 Square::Square(unsigned int equal_side_length) : Dimension( 2, equal_side_length) // Passes {0} to Dimension

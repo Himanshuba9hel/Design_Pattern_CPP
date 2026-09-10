@@ -1,8 +1,8 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
-
+#include <iostream>
 #include <unordered_map>
-
+#include <string>
 class Customer
 {
 public:
@@ -15,7 +15,7 @@ public:
         Allergy,
         Food_Inspector
     };
-    unordered_map<Customer_Type,std::string> Customer_Type_Name;
+    std::unordered_map<Customer_Type,std::string> Customer_Type_Name;
 
     Customer_Type virtual type() = 0;
     void virtual lifeCycle();

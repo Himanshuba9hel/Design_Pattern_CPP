@@ -1,7 +1,7 @@
 #include "customer.h"
 
 Customer::Customer() {
-    Customer_Type_Name[Customer_Type::Regular,] = "Regular";
+    Customer_Type_Name[Customer_Type::Regular] = "Regular";
     Customer_Type_Name[Customer_Type::New] = "New";
     Customer_Type_Name[Customer_Type::Old] = "Old";
     Customer_Type_Name[Customer_Type::Critic] = "Critic";

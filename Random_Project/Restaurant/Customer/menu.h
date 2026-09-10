@@ -1,19 +1,13 @@
 #ifndef MENU_H
 #define MENU_H
-#include <unordered_set>
+#include <unordered_map>
+#include <string>
 
-class Menu
-{
+class Pantry {
 public:
-    Menu();
-};
-
-class Dish
-{
     enum class Availability {
         Available,
-        Unavailable,
-        Wait
+        Unavailable
     };
     enum class Ingredient {
         Amaranth_Leaves,
@@ -30,8 +24,29 @@ class Dish
         Tomato,
         Turnip,
     };
-    std::unordered_set<Ingredient> Ingredients;
+    std::unordered_map<Ingredient,Availability> ingredient_availability;
+};
 
+class Menu
+{
+public:
+    Menu();
+};
+
+class Dish : public Pantry
+{
+public:
+    Dish();
+    enum class Dishes {
+        Curry,
+        Pasta,
+        Bringal,
+        Lanten,
+        Potato_Bread
+    };
+protected:
+    std::string name;
+    // std::unordered_map<Ingredient> Ingredients;
 };
 
 #endif // MENU_H
