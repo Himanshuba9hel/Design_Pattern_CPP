@@ -1,5 +1,5 @@
 #include <iostream>
-#include "shadow.h"
+#include "shapes.h"
 
 using namespace std;
 /*
@@ -24,5 +24,11 @@ using namespace std;
 int main()
 {
     cout << "Hello World!" << endl;
+    Square mySquare(23);
+    mySquare.showSide();
+    mySquare.setLocation(23,34);
+    mySquare.showLocation();
+    Circle myCircle(12);
+    myCircle.showSide();
     return 0;
 }
