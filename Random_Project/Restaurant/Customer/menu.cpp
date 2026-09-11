@@ -26,3 +26,13 @@ Availability Pantry::listOfIngredientIsAvailable(std::unordered_set<Ingredient> 
 }
 
 
+
+std::unordered_set<Dish> Dishes::list_dish()
+{
+    std::unordered_set<Dish> list;
+    for(auto dish_availability: list_dish_availability){
+        if(dish_availability.second == Availability::Available)
+            list.insert(dish_availability.first);
+    }
+    return list;
+}

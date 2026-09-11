@@ -9,7 +9,7 @@ enum class Availability {
     Unavailable = false,
 };
 enum class Ingredient {
-    Amaranth_Leaves,
+    Amaranth_Leaves = 1,
     Bringal,
     Beetroot,
     Carrot,
@@ -24,7 +24,16 @@ enum class Ingredient {
     Turnip,
 };
 
-class Pantry {
+enum class Dish {
+    Curry = 1,
+    Pasta,
+    Bringal_Dish,
+    Lanten,
+    Potato_Bread
+};
+
+class Pantry final
+{
 protected:
     // Default List
     std::unordered_map<Ingredient,Availability> list_ingredient_availability =
@@ -52,18 +61,22 @@ class Menu
 {
 public:
     Menu();
+public:
+    void list_dish();
 };
 
-class Dishes
+class Dishes final
 {
 public:
     Dishes();
-    enum class Dish {
-        Curry,
-        Pasta,
-        Bringal_Dish,
-        Lanten,
-        Potato_Bread
+
+protected:
+    std::unordered_map<Dish,Availability> list_dish_availability = {
+        {Dish::Curry, Availability::Available},
+        {Dish::Pasta, Availability::Unavailable},
+        {Dish::Bringal_Dish, Availability::Available},
+        {Dish::Lanten, Availability::Available},
+        {Dish::Potato_Bread, Availability::Available},
     };
     std::unordered_map<Dish,std::unordered_set<Ingredient>> list_dish_ingredient =
         {
@@ -86,6 +99,8 @@ public:
             {Ingredient::Spinach,
             Ingredient::Potato}},
         };
+public:
+    std::unordered_set<Dish> list_dish();
 };
 
 #endif // MENU_H
