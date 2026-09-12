@@ -4,6 +4,21 @@
 #include <unordered_map>
 #include <iostream>
 
+class Task
+{
+    enum task_state
+    {
+        Start,
+        Pause,
+        Resume,
+        Finished
+    };
+    task_state state = Start;
+protected:
+    task_state getStatus() { return state; }
+    void setStatus(task_state state) { this->state = state; }
+};
+
 class Staff
 {
 public:
@@ -13,7 +28,7 @@ public:
         Waiter,
         Cashier,
         Chef,
-        Dishwasher
+        Dishwasher,
     };
 
     enum class Coordinate {
@@ -22,6 +37,12 @@ public:
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
     virtual int salary() = 0;
+};
+
+class Waiter : public Staff
+{
+public:
+
 };
 
 class Manager : public Staff
