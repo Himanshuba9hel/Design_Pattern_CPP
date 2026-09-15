@@ -10,7 +10,8 @@ add_executable(Restaurant main.cpp
     Customer/customer.h Customer/customer.cpp
     Customer/menu.h Customer/menu.cpp
     Restaurants/restaurants.h Restaurants/restaurants.cpp
-    Order/order.h Order/order.cpp)
+    Order/order.h Order/order.cpp
+    Staff/accessories.h Staff/accessories.cpp)
 
 include(GNUInstallDirs)
 install(TARGETS Restaurant

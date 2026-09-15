@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unordered_map>
 #include <iostream>
+#include "accessories.h"
 
 class Task
 {
@@ -21,8 +22,10 @@ protected:
 
 class Staff
 {
+
 public:
     Staff();
+    int id;
     enum class Designations {
         Manager,
         Waiter,
@@ -37,6 +40,8 @@ public:
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
     virtual int salary() = 0;
+protected:
+    Accessories accessories;
 };
 
 class Waiter : public Staff
