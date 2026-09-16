@@ -1,18 +1,36 @@
 #include "staff.h"
+#include "../Restaurants/restaurants.h"
 
-Staff::Staff() {}
+Staff::Staff() {
 
-Staff::Designations Manager::myDesignation()
-{
-    return Designations::Manager;
 }
+
+
+Manager::Manager()
+{
+    ID  = varID++;
+    designation = Designations::Manager;
+    salary  = 30,000;
+    location = Location::Cabin;
+}
+
 
 std::string Manager::myJob()
 {
     return "I manage all the staff";
 }
 
-int Manager::salary()
+
+Waiter::Waiter()
 {
-    return 22000;
+    ID  = varID++;
+    designation = Designations::Waiter;
+    salary  = 25,000;
+    location = Location::Dining_Room;
+}
+
+
+std::string Waiter::myJob()
+{
+    return "To handle customers.";
 }

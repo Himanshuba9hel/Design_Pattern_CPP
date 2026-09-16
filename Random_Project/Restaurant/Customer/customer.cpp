@@ -1,4 +1,5 @@
 #include "customer.h"
+#include "../Restaurants/restaurants.h"
 
 Customer::Customer() {
     Customer_Type_Name[Customer_Type::Regular] = "Regular";
@@ -8,8 +9,17 @@ Customer::Customer() {
     Customer_Type_Name[Customer_Type::Allergy] = "Allergy";
     Customer_Type_Name[Customer_Type::Food_Inspector] = "Food Inspector";
 
+    location = Location::Outside;
+}
 
+void Customer::enteredInRestaurant()
+{
+    location = Location::Dining_Room;
+}
 
+void Customer::exitFromRestaurant()
+{
+    location = Location::Outside;
 }
 
 void Customer::lifeCycle()

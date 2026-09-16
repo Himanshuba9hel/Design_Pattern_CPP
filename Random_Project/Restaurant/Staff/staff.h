@@ -7,21 +7,25 @@
 
 class Task;
 enum class Designations;
+enum class Location;
 
+static unsigned int varID = 0;
 class Staff
 {
 public:
     Staff();
-protected:
 // Identification Data
-    static unsigned int id;
+protected:
+    unsigned int ID;
     Designations designation;
-
+    unsigned int salary;
+// Position
+    Location location;
+public:
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
-    virtual int salary() = 0;
-protected:
-    Accessories accessories;
+    virtual int mysalary() = 0;
+
 };
 
 enum class Designations {
@@ -35,16 +39,25 @@ enum class Designations {
 class Waiter : public Staff
 {
 public:
+    Waiter();
 
+public:
+    Designations myDesignation() override { return designation; }
+    std::string myJob() override;
+    int mysalary() override { return salary; }
 };
 
 class Manager : public Staff
 {
-    public:
-    Designations myDesignation() override;
+public:
+    Manager();
+
+public:
+    Designations myDesignation() override { return designation; }
     std::string myJob() override;
-    int salary() override;
+    int mysalary() override { return salary; }
 };
+
 class Task
 {
     enum task_state

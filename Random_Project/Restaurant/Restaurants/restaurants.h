@@ -4,25 +4,53 @@
 #include <unordered_map>
 #include <string>
 #include <utility>
+#include <unordered_set>
 
-class Restaurants
+class Customer;
+class DiningRoom;
+class Staff;
+class Waiter;
+
+enum class Location {
+    Outside,
+    Dining_Room,
+    Waiting,
+    Kitchen,
+    Cabin
+};
+
+class Restaurants final
 {
 public:
     Restaurants();
+    DiningRoom *dining_room = nullptr;
+
+// Person inside Restaurant
+protected:
+    std::unordered_set<Customer*> customers;
+    std::unordered_set<Staff*> staff;
+    std::unordered_set<Waiter*> waiters;
+
+// Operation on Person
+public:
+    void customerEntry(Customer* customer);
+public:
+    void addWaiter(Waiter* waiter);
+    void addCustomer(Customer* customer);
+
     enum class States {
         Open,
         Break_Time,
         Under_Maintenance,
         Close
     };
-
     unsigned int seats = 0;
 
 };
 
-class Restaurants_Schedule {
+class RestaurantsSchedule {
 public:
-    Restaurants_Schedule();
+    RestaurantsSchedule();
 // Time
 protected:
     enum class Days {
