@@ -5,43 +5,31 @@
 #include <iostream>
 #include "accessories.h"
 
-class Task
-{
-    enum task_state
-    {
-        Start,
-        Pause,
-        Resume,
-        Finished
-    };
-    task_state state = Start;
-protected:
-    task_state getStatus() { return state; }
-    void setStatus(task_state state) { this->state = state; }
-};
+class Task;
+enum class Designations;
 
 class Staff
 {
-
 public:
     Staff();
-    int id;
-    enum class Designations {
-        Manager,
-        Waiter,
-        Cashier,
-        Chef,
-        Dishwasher,
-    };
+protected:
+// Identification Data
+    static unsigned int id;
+    Designations designation;
 
-    enum class Coordinate {
-
-    };
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
     virtual int salary() = 0;
 protected:
     Accessories accessories;
+};
+
+enum class Designations {
+    Manager,
+    Waiter,
+    Cashier,
+    Chef,
+    Dishwasher,
 };
 
 class Waiter : public Staff
@@ -57,5 +45,18 @@ class Manager : public Staff
     std::string myJob() override;
     int salary() override;
 };
-
+class Task
+{
+    enum task_state
+    {
+        Start,
+        Pause,
+        Resume,
+        Finished
+    };
+    task_state state = Start;
+protected:
+    task_state getStatus() { return state; }
+    void setStatus(task_state state) { this->state = state; }
+};
 #endif // STAFF_H
