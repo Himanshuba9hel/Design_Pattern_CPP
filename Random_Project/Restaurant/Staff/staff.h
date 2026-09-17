@@ -5,6 +5,8 @@
 #include <iostream>
 #include "accessories.h"
 
+// class Restaurants;
+class DiningRoom;
 class Task;
 enum class Designations;
 enum class Location;
@@ -21,11 +23,14 @@ protected:
     unsigned int salary;
 // Position
     Location location;
+// Restaurant Data
+    DiningRoom* dining_room = nullptr;
+
 public:
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
     virtual int mysalary() = 0;
-
+    virtual void task() = 0;
 };
 
 enum class Designations {
@@ -39,12 +44,14 @@ enum class Designations {
 class Waiter : public Staff
 {
 public:
-    Waiter();
+    Waiter(DiningRoom* dining_room);
 
 public:
     Designations myDesignation() override { return designation; }
     std::string myJob() override;
     int mysalary() override { return salary; }
+// His Job
+    void task() override;
 };
 
 class Manager : public Staff

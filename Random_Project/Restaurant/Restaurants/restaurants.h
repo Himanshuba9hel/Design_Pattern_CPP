@@ -5,11 +5,13 @@
 #include <string>
 #include <utility>
 #include <unordered_set>
+#include <vector>
 
 class Customer;
 class DiningRoom;
 class Staff;
 class Waiter;
+class Manager;
 
 enum class Location {
     Outside,
@@ -19,12 +21,16 @@ enum class Location {
     Cabin
 };
 
+struct Restaurants_Specification;
 class Restaurants final
 {
 public:
     Restaurants();
+    Restaurants(Restaurants_Specification specification);
+// Physical Part Of Restaurants
+protected:
     DiningRoom *dining_room = nullptr;
-
+    void createDiningRoom();
 // Person inside Restaurant
 protected:
     std::unordered_set<Customer*> customers;
@@ -35,8 +41,18 @@ protected:
 public:
     void customerEntry(Customer* customer);
 public:
+    void addStaff(Staff* staff);
+    void addStaff(std::vector<Staff*>* staff);
+
+    void addManager(Manager* manager);
+    void addManager(std::vector<Staff*>* manager);
+
     void addWaiter(Waiter* waiter);
+    void addWaiter(std::vector<Staff*>* waiter);
+
+
     void addCustomer(Customer* customer);
+    void addCustomer(std::vector<Staff*>* waiter);
 
     enum class States {
         Open,

@@ -11,6 +11,7 @@ class DiningRoom final
 {
 public:
     DiningRoom(std::vector<TableNChair> *table_n_chairs);
+    ~DiningRoom();
 protected:
     std::unordered_set<Table*> tables;
     std::unordered_set<Customer*> standingCustomer;

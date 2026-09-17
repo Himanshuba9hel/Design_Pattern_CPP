@@ -1,5 +1,6 @@
 #include "staff.h"
 #include "../Restaurants/restaurants.h"
+#include "../Customer/diningroom.h"
 
 Staff::Staff() {
 
@@ -21,16 +22,21 @@ std::string Manager::myJob()
 }
 
 
-Waiter::Waiter()
+Waiter::Waiter(DiningRoom* dining_room)
 {
     ID  = varID++;
     designation = Designations::Waiter;
     salary  = 25,000;
     location = Location::Dining_Room;
+    this->dining_room = dining_room;
 }
-
 
 std::string Waiter::myJob()
 {
     return "To handle customers.";
+}
+
+void Waiter::task()
+{
+
 }
