@@ -8,6 +8,7 @@
 // class Restaurants;
 class DiningRoom;
 class Task;
+class Room;
 enum class Designations;
 enum class Location;
 
@@ -16,21 +17,29 @@ class Staff
 {
 public:
     Staff();
+
 // Identification Data
 protected:
     unsigned int ID;
     Designations designation;
     unsigned int salary;
-// Position
-    Location location;
-// Restaurant Data
-    DiningRoom* dining_room = nullptr;
-
 public:
     virtual Designations myDesignation() = 0;
     virtual std::string myJob() = 0;
     virtual int mysalary() = 0;
+
+// Position
+protected:
+    Room* room = nullptr;
+    Location location;
+public:
+    // virtual setRoom(Room* room) = 0;
+
+// Restaurant Data
+protected:
+    DiningRoom* dining_room = nullptr;
     virtual void task() = 0;
+
 };
 
 enum class Designations {
@@ -40,6 +49,7 @@ enum class Designations {
     Chef,
     Dishwasher,
 };
+
 
 class Waiter : public Staff
 {
@@ -54,6 +64,7 @@ public:
     void task() override;
 };
 
+
 class Manager : public Staff
 {
 public:
@@ -64,6 +75,33 @@ public:
     std::string myJob() override;
     int mysalary() override { return salary; }
 };
+
+
+
+
+class Cashier: public Staff
+{
+public:
+    Cashier();
+
+public:
+    Designations myDesignation() override { return designation; }
+    std::string myJob() override;
+    int mysalary() override { return salary; }
+};
+
+
+class Dishwasher: public Staff
+{
+public:
+    Dishwasher();
+
+public:
+    Designations myDesignation() override { return designation; }
+    std::string myJob() override;
+    int mysalary() override { return salary; }
+};
+
 
 class Task
 {
