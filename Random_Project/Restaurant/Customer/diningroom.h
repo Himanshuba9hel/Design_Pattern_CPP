@@ -23,12 +23,7 @@ struct TableNChair {
     unsigned int Chairs = 0;
 };
 
-class Table
-{
-public:
-    Table(unsigned int maximum_chairs);
-    std::unordered_map<unsigned int, Customer*> chairs_customer_arrangement;
-};
+
 
 
 #endif // DININGROOM_H

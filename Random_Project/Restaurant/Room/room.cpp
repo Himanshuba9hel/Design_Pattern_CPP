@@ -1,4 +1,5 @@
 #include "room.h"
+#include "object.h"
 
 Room::Room(unsigned int area)
 {
@@ -13,6 +14,11 @@ void Room::setArea(unsigned int area)
 unsigned int Room::getArea()
 {
     return area;
+}
+
+void Room::setObject(Object *object)
+{
+    objects.insert(object);
 }
 
 Kitchen::Kitchen(unsigned int area, Staff staff)
