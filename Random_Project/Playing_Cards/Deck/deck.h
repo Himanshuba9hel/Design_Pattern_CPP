@@ -2,6 +2,7 @@
 #define DECK_H
 #include <unordered_set>
 #include <vector>
+#include <stack>
 
 class Card;
 enum class Suits;
@@ -15,6 +16,7 @@ public:
     void shuffleCards();
 
     std::vector<Card*> cardsVec;
+    std::stack<Card*> deck;
     std::unordered_set<Card*> cards;
 };
 

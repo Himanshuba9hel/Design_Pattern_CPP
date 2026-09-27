@@ -28,15 +28,18 @@ protected:
     std::unordered_set<Object*> objects;
     virtual void setObject(Object* object) final;
 
-    virtual void getWalkingArea() final;
+    virtual unsigned int getWalkingArea() final;
 // Location
     Location location;
+
+// Staff
+    Staff *staff;
 };
 
 class Kitchen : public Room
 {
 public:
-    Kitchen(unsigned int area, Staff staff);
+    Kitchen(unsigned int area, Staff *staff);
 
 // Kitchen
 protected:
