@@ -1,7 +1,7 @@
 #ifndef TABLE_H
 #define TABLE_H
 
-#include <unordered_set>
+#include <set>
 #include <vector>
 
 class Deck;
@@ -12,12 +12,20 @@ class Table
 {
 public:
     Table();
-private:
-    std::unordered_set<Player*> player;
+    ~Table();
+protected:
+    std::set<Player*> players;
 public:
     bool addPlayer(Player* player);
     bool removePlayer(Player* player);
-    std::vector<Player*>* showPlayer();
+    const std::vector<Player*>* showPlayer();
+
+protected:
+    Deck* deck = nullptr;
+public:
+    bool addDeck(Deck* deck);
+    bool removeDeck();
+    bool replaceDeck(Deck* deck);
 };
 
 #endif // TABLE_H
