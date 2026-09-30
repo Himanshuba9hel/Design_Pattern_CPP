@@ -34,6 +34,6 @@ install(TARGETS Playing_Cards
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
+set(CMAKE_TLS_VERIFY OFF)
 enable_testing()
 add_subdirectory(Testing)
