@@ -5,6 +5,11 @@ project(Design_Pattern_CPP LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_library(DesignPatternLib
+    Composite/component.h Composite/component.cpp
+    Composite/filesystemcomponent.h Composite/filesystemcomponent.cpp
+)
+
 add_executable(Design_Pattern_CPP main.cpp)
 
 include(GNUInstallDirs)
