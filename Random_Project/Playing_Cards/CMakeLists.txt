@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(DeckLib STATIC
     Deck/deck.h
     Deck/deck.cpp
+    Table/holder.h Table/holder.cpp
 )
 target_include_directories(DeckLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
