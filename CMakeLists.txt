@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(DesignPatternLib
     Composite/component.h Composite/component.cpp
     Composite/filesystemcomponent.h Composite/filesystemcomponent.cpp
+    Builder/computer.h Builder/computer.cpp
 )
 
 add_executable(Design_Pattern_CPP main.cpp)
