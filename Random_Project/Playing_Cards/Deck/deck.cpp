@@ -33,7 +33,7 @@ void Deck::shuffleCards()
     std::mt19937 g(rd());
 
     std::shuffle(cardsVec.begin(), cardsVec.end(), g);
-    std::shuffle(deck.begin(), deck.end(), g);
+
 }
 
 Card::Card(Suits suit, Ranks rank) : suit(suit), rank(rank) {}

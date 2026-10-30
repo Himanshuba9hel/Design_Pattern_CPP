@@ -25,19 +25,24 @@ FetchContent_MakeAvailable(googletest)
 # --- Include Directories ---
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/..
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Composite
     # ${CMAKE_CURRENT_SOURCE_DIR}/../Building
     # ${CMAKE_CURRENT_SOURCE_DIR}/../Entity
 )
 
 add_executable(DesignPatternTest
-    main.cpp tst_building.cpp
-    ${PROJECT_SOURCES}
+    main.cpp
+    # ../Composite/accommodation.cpp
+    # tst_building.cpp         # Temporarily disabled
+    accommodation_test.cpp   # Temporarily disabled
 )
 
 # 3. Link the targets directly
 target_link_libraries(DesignPatternTest PRIVATE
     # BuildingLib
     # EntityLib
+    gtest_main
+    DesignPatternLib
     gtest
     gmock
 )

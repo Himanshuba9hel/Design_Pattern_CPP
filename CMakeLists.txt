@@ -9,9 +9,12 @@ add_library(DesignPatternLib
     Composite/component.h Composite/component.cpp
     Composite/filesystemcomponent.h Composite/filesystemcomponent.cpp
     Builder/computer.h Builder/computer.cpp
+    Composite/accommodation.h Composite/accommodation.cpp
+    Composite/playground.h Composite/playground.cpp
 )
 
 add_executable(Design_Pattern_CPP main.cpp)
+target_link_libraries(Design_Pattern_CPP PRIVATE DesignPatternLib)
 
 include(GNUInstallDirs)
 install(TARGETS Design_Pattern_CPP
