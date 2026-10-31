@@ -8,9 +8,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(DesignPatternLib
     Composite/component.h Composite/component.cpp
     Composite/filesystemcomponent.h Composite/filesystemcomponent.cpp
+<<<<<<< Updated upstream
     Builder/computer.h Builder/computer.cpp
     Composite/accommodation.h Composite/accommodation.cpp
     Composite/playground.h Composite/playground.cpp
+=======
+    Composite/land.h Composite/land.cpp
+>>>>>>> Stashed changes
 )
 
 add_executable(Design_Pattern_CPP main.cpp)
