@@ -16,7 +16,9 @@ add_library(DesignPatternLib
     Composite/land.h Composite/land.cpp
 >>>>>>> Stashed changes
 )
-
+add_library(ResourceManagementLib
+    ResourceManagement/holdernasset.h ResourceManagement/holdernasset.cpp
+)
 add_executable(Design_Pattern_CPP main.cpp)
 target_link_libraries(Design_Pattern_CPP PRIVATE DesignPatternLib)
 
