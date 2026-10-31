@@ -12,7 +12,9 @@ add_library(DesignPatternLib
     Composite/accommodation.h Composite/accommodation.cpp
     Composite/playground.h Composite/playground.cpp
 )
-
+add_library(ResourceManagementLib
+    ResourceManagement/holdernasset.h ResourceManagement/holdernasset.cpp
+)
 add_executable(Design_Pattern_CPP main.cpp)
 target_link_libraries(Design_Pattern_CPP PRIVATE DesignPatternLib)
 
