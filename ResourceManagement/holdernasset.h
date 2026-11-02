@@ -1,61 +1,111 @@
 #ifndef HOLDERNASSET_H
 #define HOLDERNASSET_H
 
-class Holder;
-class Asset;
-class Student;
-class Pencil;
-class HolderNAsset
-{
-public:
-    HolderNAsset();
-};
+#include <iostream>
 
+class Asset;
+
+// -------------------------------------------------------------
+// Base Holder Interface
+// -------------------------------------------------------------
 class Holder
 {
 public:
+    virtual ~Holder() = default;
+
     virtual Holder* getHolder() = 0;
 
     virtual void setBorrower(Holder* borrower) = 0;
-    virtual Holder* borrowFrom() = 0;
+    virtual Holder* getBorrower() const = 0;
 
-    virtual void setGiver(Holder* giver)  = 0;
-    virtual Holder* givenTo()  = 0;
-
+    virtual void setGiver(Holder* giver) = 0;
+    virtual Holder* getGiver() const = 0;
 
     virtual void giveAsset(Holder* borrower) = 0;
     virtual void takeAsset(Holder* giver, Asset* asset) = 0;
 };
 
+// -------------------------------------------------------------
+// Base Asset Interface
+// -------------------------------------------------------------
 class Asset
 {
 public:
-    virtual Holder* getOwner() = 0;
+    virtual ~Asset() = default;
+
+    virtual Holder* getOwner() const = 0;
     virtual void setOwner(Holder* owner) = 0;
 };
 
-class Student: public Holder
+// -------------------------------------------------------------
+// Concrete Asset: Pencil
+// -------------------------------------------------------------
+class Pencil : public Asset
 {
-protected:
-    Student* giver = nullptr, borrower = nullptr;
 private:
-    Pencil* pencil;
+    Holder* owner_ = nullptr;
+
 public:
-    Student* getHolder() override { return this; }
+    Pencil() = default;
+    explicit Pencil(Holder* owner) : owner_(owner) {}
 
-    void setBorrower(Student* borrower) override { this->borrower = borrower; }
-    Student* borrowFrom() override { return giver; }
-
-    void setGiver(Student* giver) override { this->giver = giver; }
-    Student* givenTo() override { return giver; }
-
-    void giveAsset(Student* borrower) override;
-    void takeAsset(Student* giver, Pencil* asset) override;
+    Holder* getOwner() const override { return owner_; }
+    void setOwner(Holder* owner) override { owner_ = owner; }
 };
 
-class Pencil: public Asset
+// -------------------------------------------------------------
+// Concrete Holder: Student
+// -------------------------------------------------------------
+class Student : public Holder
 {
+protected:
+    Holder* giver_ = nullptr;
+    Holder* borrower_ = nullptr;
+    Asset* asset_ = nullptr; // Represents the asset currently held (e.g., Pencil)
 
+public:
+    Student() = default;
+    explicit Student(Asset* asset) : asset_(asset) {
+        if (asset_) {
+            asset_->setOwner(this);
+        }
+    }
+
+    Holder* getHolder() override { return this; }
+
+    void setBorrower(Holder* borrower) override { borrower_ = borrower; }
+    Holder* getBorrower() const override { return borrower_; }
+
+    void setGiver(Holder* giver) override { giver_ = giver; }
+    Holder* getGiver() const override { return giver_; }
+
+    // Transfer asset from this student to the borrower
+    void giveAsset(Holder* borrower) override
+    {
+        if (!asset_ || !borrower) return;
+
+        Holder* nextBorrower = borrower;
+        Asset* transferredAsset = asset_;
+
+        // Clear own asset and update relationship
+        asset_ = nullptr;
+        setBorrower(nextBorrower);
+
+        // Deliver asset to recipient
+        nextBorrower->takeAsset(this, transferredAsset);
+    }
+
+    // Accept asset from giver
+    void takeAsset(Holder* giver, Asset* asset) override
+    {
+        asset_ = asset;
+        setGiver(giver);
+        if (asset_) {
+            asset_->setOwner(this);
+        }
+    }
+
+    Asset* currentAsset() const { return asset_; }
 };
 
 #endif // HOLDERNASSET_H

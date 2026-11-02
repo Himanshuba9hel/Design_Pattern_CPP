@@ -19,11 +19,11 @@ public:
 class Locality : public Land
 {
 private:
-    int length = 0, breath = 0;
+    int length = 0, breadth = 0;
 public:
     unsigned int getArea()    override { return length;       }
-    unsigned int getLength()  override { return breath;       }
-    unsigned int getBreadth() override { return length*breath;}
+    unsigned int getLength()  override { return breadth;       }
+    unsigned int getBreadth() override { return length*breadth;}
     void setLength (unsigned int length)  override { this->length   = length;  }
     void setBreadth(unsigned int breadth) override { this->breadth  = breadth; }
     bool isComposite() const override{
@@ -34,15 +34,15 @@ public:
 class Plot : public Land
 {
 private:
-    int length = 0, breath = 0;
+    int length = 0, breadth = 0;
 public:
-    Plot(unsigned int length, unsigned int breath) {
+    Plot(unsigned int length, unsigned int breadth) {
         this->length   = length;
         this->breadth  = breadth;
     }
     unsigned int getArea()    override { return length;       }
-    unsigned int getLength()  override { return breath;       }
-    unsigned int getBreadth() override { return length*breath;}
+    unsigned int getLength()  override { return breadth;       }
+    unsigned int getBreadth() override { return length*breadth;}
     void setLength (unsigned int length)  override { this->length   = length;  }
     void setBreadth(unsigned int breadth) override { this->breadth  = breadth; }
     bool isComposite() const override{
