@@ -16,6 +16,7 @@ add_library(DesignPatternLib
 add_library(ResourceManagementLib
     ResourceManagement/holdernasset.h ResourceManagement/holdernasset.cpp
     ResourceManagement/memorymanagement.cpp ResourceManagement/memorymanagement.h
+    ResourceManagement/chatroom.h ResourceManagement/chatroom.cpp
 )
 add_executable(Design_Pattern_CPP main.cpp)
 target_link_libraries(Design_Pattern_CPP PRIVATE DesignPatternLib)
