@@ -32,11 +32,12 @@ include_directories(
 )
 
 add_executable(DesignPatternTest
-    main.cpp
+    # main.cpp
     # ../Composite/accommodation.cpp
     # tst_building.cpp         # Temporarily disabled
     accommodation_test.cpp
-    holdernasset_test.cpp   # Temporarily disabled
+    holdernasset_test.cpp
+    memorymanagement_test.cpp   # Temporarily disabled
 )
 
 # 3. Link the targets directly
@@ -46,7 +47,6 @@ target_link_libraries(DesignPatternTest PRIVATE
     gtest_main
     DesignPatternLib
     ResourceManagementLib
-    gtest
     gmock
 )
 
