@@ -14,6 +14,8 @@ add_library(DesignPatternLib
     Composite/land.h Composite/land.cpp
     Bridge/workshopbridge.h Bridge/workshopbridge.cpp
     Bridge/workshopcustombridge.h Bridge/workshopcustombridge.cpp
+    Visitor/shapevisitor.h Visitor/shapevisitor.cpp
+
 )
 add_library(ResourceManagementLib
     ResourceManagement/holdernasset.h ResourceManagement/holdernasset.cpp
