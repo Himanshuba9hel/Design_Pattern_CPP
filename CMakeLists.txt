@@ -12,6 +12,7 @@ add_library(DesignPatternLib
     Composite/accommodation.h Composite/accommodation.cpp
     Composite/playground.h Composite/playground.cpp
     Composite/land.h Composite/land.cpp
+    Visitor/shapevisitor.h Visitor/shapevisitor.cpp
 )
 add_library(ResourceManagementLib
     ResourceManagement/holdernasset.h ResourceManagement/holdernasset.cpp
