@@ -1,7 +1,8 @@
 #ifndef CHATROOM_H
 #define CHATROOM_H
 #include <variant>
-
+#include <string>
+#include <iostream>
 class ChatRoom
 {
 public:
