@@ -4,14 +4,12 @@
 #include <vector>
 #include <stack>
 
-class Card;
-enum class Suits;
-enum class Ranks;
+#include "card.h"
 
 class Deck
 {
 public:
-    Deck();
+    ~Deck() = default;
     void generateCards();
     void shuffleCards();
 
@@ -19,40 +17,5 @@ public:
     std::stack<Card*> deck;
     std::unordered_set<Card*> cards;
 };
-
-
-class Card
-{
-public:
-    Card(Suits suit, Ranks rank);
-    Suits suit;
-    Ranks rank;
-};
-
-enum class Suits
-{
-    Diamond = 1,
-    Heart,
-    Club,
-    Spade,
-};
-
-enum class Ranks
-{
-    ace = 1,
-    two,
-    three,
-    four,
-    five,
-    six,
-    seven,
-    eight,
-    nine,
-    ten,
-    jack,
-    queen,
-    king,
-};
-
 
 #endif // DECK_H

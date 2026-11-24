@@ -1,5 +1,5 @@
 #include "player.h"
-#include "./Deck/deck.h"
+#include "../DeckNCards/deck.h"
 #include <iostream>
 
 Player::Player() {}

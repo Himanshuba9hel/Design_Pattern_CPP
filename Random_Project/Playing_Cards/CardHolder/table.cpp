@@ -1,6 +1,6 @@
 #include <iostream>
 #include "table.h"
-#include "./Deck/deck.h"
+#include "./DeckNCards//deck.h"
 #include "./Player/player.h"
 
 Table::Table() {
