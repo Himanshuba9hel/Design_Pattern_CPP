@@ -7,9 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 1. Create a library for the game logic
 add_library(DeckLib STATIC
-    Deck/deck.h
-    Deck/deck.cpp
-    Table/holder.h Table/holder.cpp
+    DeckNCards/deck.h
+    DeckNCards/deck.cpp
+    CardHolder/holder.h CardHolder/holder.cpp
+    CardHolder/table.h CardHolder/table.cpp
 )
 target_include_directories(DeckLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -20,11 +21,6 @@ add_library(PlayerLib STATIC
 )
 target_include_directories(PlayerLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(TableLib STATIC
-    Table/table.h
-    Table/table.cpp
-)
-target_include_directories(TableLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # 2. Main executable
 add_executable(Playing_Cards main.cpp)
