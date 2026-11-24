@@ -1,21 +1,17 @@
 #ifndef DECK_H
 #define DECK_H
-#include <unordered_set>
-#include <vector>
-#include <stack>
-
+#include <list>
 #include "card.h"
 
 class Deck
 {
 public:
     ~Deck() = default;
-    void generateCards();
-    void shuffleCards();
-
-    std::vector<Card*> cardsVec;
-    std::stack<Card*> deck;
-    std::unordered_set<Card*> cards;
+    virtual void shuffleCards();
+    virtual void addCard(Card *card) = 0;
+    virtual void addCards(std::list<Card*> cards) = 0;
+    virtual void takeCard(std::list<Card*>::iterator cardItr) = 0;
+    virtual void takeCards(std::list<std::list<Card*>::iterator> cardsItrs) = 0;
 };
 
 #endif // DECK_H

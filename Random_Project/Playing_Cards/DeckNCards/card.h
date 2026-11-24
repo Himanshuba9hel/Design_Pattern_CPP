@@ -1,11 +1,16 @@
 #ifndef CARD_H
 #define CARD_H
 
+struct CardInfo
+{
+    virtual ~CardInfo() = default;
+};
+
 class Card
 {
 public:
-    ~Card() = default;
-    virtual void getInfo() const = 0;
+    virtual ~Card() = default;
+    virtual CardInfo* getInfo() const = 0;
 };
 
 #endif // CARD_H

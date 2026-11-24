@@ -14,6 +14,7 @@ add_library(DeckLib STATIC
     CardHolder/holder.cpp
     CardHolder/table.h
     CardHolder/table.cpp
+    DeckNCards/solitairedeck.h DeckNCards/solitairedeck.cpp
 )
 target_include_directories(DeckLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
