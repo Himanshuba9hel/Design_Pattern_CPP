@@ -1,5 +1,4 @@
 #include "solitairedeck.h"
-#include <iostream>
 #include <iterator>
 #include <cstddef>
 #include <functional>
@@ -72,14 +71,62 @@ void SolitaireDeck::addCards(std::list<Card *> newCards)
     }
 }
 
-void SolitaireDeck::takeCard(std::list<Card *>::iterator cardItr)
+Card *SolitaireDeck::tryGiveCard(std::size_t position)
 {
+    if (position >= cards.size()) {
+        return nullptr;
+    }
 
+    auto cardItr = cards.begin();
+    std::advance(cardItr, position);
+    Card *card = *cardItr;
+    cards.erase(cardItr); // remove from deck so the card stays in one place
+    return card;          // non-const Card* (not const Card*)
 }
 
-void SolitaireDeck::takeCards(std::list<std::list<Card *>::iterator> cardsItrs)
+std::list<Card *> SolitaireDeck::tryGiveCards(std::set<std::size_t> positions)
 {
+    std::list<Card *> givenCards;
+    if (positions.empty() || cards.empty()) {
+        return givenCards;
+    }
 
+    // Iterate in descending order so erasing earlier positions does not
+    // shift the indices of smaller positions still to be erased.
+    for (auto rit = positions.rbegin(); rit != positions.rend(); ++rit) {
+        const std::size_t pos = *rit;
+        if (pos >= cards.size()) {
+            continue; // or break, since positions is sorted ascending
+        }
+
+        auto cardItr = cards.begin();
+        std::advance(cardItr, pos);
+        givenCards.push_front(*cardItr); // preserve ascending position order
+        cards.erase(cardItr);
+    }
+
+    return givenCards;
+}
+
+void SolitaireDeck::tryTakeCard(Card *card)
+{
+    if (card == nullptr) {
+        return;
+    }
+
+    // Keep each card single in the deck (avoid duplicate pointers)
+    const bool alreadyPresent =
+        std::find(cards.begin(), cards.end(), card) != cards.end();
+    if (!alreadyPresent) {
+        cards.push_back(card);
+    }
+}
+
+void SolitaireDeck::tryTakeCards(std::list<Card *> newCards)
+{
+    for (Card *card : newCards) {
+        tryTakeCard(card);
+    }
 }
 
 SolitaireDeck generateSolitaireDeck()

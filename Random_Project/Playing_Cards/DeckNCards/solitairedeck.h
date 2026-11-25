@@ -72,8 +72,11 @@ private:
 public:
     void addCard(Card *card) override;
     void addCards(std::list<Card*> cards) override;
-    void takeCard(std::list<Card*>::iterator cardItr) override;
-    void takeCards(std::list<std::list<Card*>::iterator> cardsItrs) override;
+    Card* tryGiveCard(std::size_t position) override;
+    std::list<Card*> tryGiveCards(std::set<std::size_t> positions) override;
+    void tryTakeCard(Card* card) override;
+    void tryTakeCards(std::list<Card*> cards) override;
+
 };
 
 SolitaireDeck generateSolitaireDeck();
