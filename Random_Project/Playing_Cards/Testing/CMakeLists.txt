@@ -24,7 +24,8 @@ endif()
 FetchContent_MakeAvailable(googletest)
 
 # Match your actual test file name
-add_executable(testing main.cpp tst_deck.cpp)
+add_executable(testing main.cpp tst_deck.cpp
+    tst_solitairedeck.cpp)
 
 # Link against DeckLib and Google Test targets
 target_link_libraries(testing PRIVATE

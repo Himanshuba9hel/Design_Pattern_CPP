@@ -10,7 +10,7 @@ class Card
 {
 public:
     virtual ~Card() = default;
-    virtual CardInfo* getInfo() const = 0;
+    virtual const CardInfo &getInfo() const = 0;
 };
 
 #endif // CARD_H

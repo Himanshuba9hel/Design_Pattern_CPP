@@ -1,21 +1,12 @@
 #ifndef SOLITAIREDECK_H
 #define SOLITAIREDECK_H
-
+#include <optional>
 #include "deck.h"
 #include "card.h"
 
-
-
-class SolitaireDeck : public Deck
+class SolitaireCard : public Card
 {
 public:
-    SolitaireDeck();
-protected:
-    std::list<Card*> cards;
-};
-
-struct SolitaireCardInfo : public CardInfo
-{
     enum Ranks {
         Two = 2,
         Three,
@@ -37,22 +28,54 @@ struct SolitaireCardInfo : public CardInfo
         Clover  = 2,
         Spade   = 3,
     };
-    Ranks rank;
-    Suits suit;
-    bool faceUp = false;
-};
+    enum Visibility {
+        NoOne = 0,
+        OnlyHolder,
+        EveryOne,
+    };
 
-class SolitaireCard : public Card
-{
-public:
-    SolitaireCard();
+    struct SolitaireCardInfo : public CardInfo
+    {
+        Visibility visibility = Visibility::NoOne;
+        std::optional<Suits> suit;
+        std::optional<Ranks> rank;
+
+        SolitaireCardInfo() = default;
+        explicit SolitaireCardInfo(Visibility vis)
+            : visibility(vis) {}
+        SolitaireCardInfo(Visibility vis, Suits s, Ranks r)
+            : visibility(vis), suit(s), rank(r) {}
+    };
+
+    SolitaireCard(Ranks rank, Suits suit, Visibility visibility = Visibility::NoOne);
     ~SolitaireCard() override = default;
-
-    SolitaireCardInfo* getInfo() const override;
+    const SolitaireCardInfo &getInfo() const override;
 
 private:
-    SolitaireCardInfo m_info;
+    Ranks rank_;
+    Suits suit_;
+    Visibility visibility_;
+    mutable SolitaireCardInfo m_info;
 };
 
+class SolitaireDeck : public Deck
+{
+public:
+    SolitaireDeck();
+    ~SolitaireDeck() override = default;
+    unsigned int totalCards() override;
+    std::optional<std::reference_wrapper<const Card>> findCard(std::size_t position) const;
+    const Card* tryShowCard(std::size_t position) const;
+
+private:
+    std::list<Card*> cards;
+public:
+    void addCard(Card *card) override;
+    void addCards(std::list<Card*> cards) override;
+    void takeCard(std::list<Card*>::iterator cardItr) override;
+    void takeCards(std::list<std::list<Card*>::iterator> cardsItrs) override;
+};
+
+SolitaireDeck generateSolitaireDeck();
 
 #endif // SOLITAIREDECK_H
